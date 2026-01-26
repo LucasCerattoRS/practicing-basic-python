@@ -1,0 +1,192 @@
+🎯 Como estudar e replicar:
+
+Reescreva livro.py do zero, sem olhar
+
+Depois reimplemente biblioteca.py
+
+Por fim, crie um main.py simples
+
+Compare com o original
+
+Ajuste onde divergir
+
+Revise sua reescrita
+
+Ou aumentar o nível (ex: herança, enum, validações)
+
+
+1. Exercícios de reforço (do básico ao intermediário)
+2. Desafios de reescrita guiada (para você reimplementar sozinho)
+3. Evolução de nível (herança, enum e validações), com orientação conceitual
+
+---
+
+ 1️⃣ Exercícios de reforço — **fixação do essencial
+
+ 🟢 Exercício 1 — Modelo básico (fundação)
+
+Objetivo: Fixar `__init__`, atributos e `__str__`
+
+> Recrie a classe `Livro` contendo:
+
+* título
+* autor
+* ano de publicação
+* disponível (inicialmente `True`)
+
+ Regras:
+
+ Use atributos privados (`_titulo`, etc.)
+ Implemente `__str__` para retornar:
+
+  ```
+  Título | Autor | Ano | Disponível
+  ```
+
+---
+
+ 🟢 Exercício 2 — Método de instância
+
+Objetivo: Entender ações sobre o próprio objeto (`self`)
+
+> Adicione o método `emprestar()` que:
+
+* Altera o estado do livro para indisponível
+* Impede novo empréstimo se já estiver emprestado
+
+Regra mental:
+
+> “Isso afeta apenas ESTE livro?”
+> Então → método de instância.
+
+---
+
+ 🟢 Exercício 3 — Atributo de classe
+
+Objetivo: Entender dados compartilhados
+
+> Faça com que todo livro criado seja armazenado automaticamente
+> em uma lista da classe `Livro`.
+
+oBs:
+Isso simula um banco de dados em memória.
+
+---
+
+ 2️⃣ Desafio de reescrita — sem copiar
+
+ 🔵 Desafio 1 — Reescreva do zero
+
+Sem olhar o código anterior, reimplemene:
+
+* `Livro`
+* lista de livros (atributo de classe)
+* `emprestar`
+* `__str__`
+
+Depois, responda mentalmente:
+
+```text
+• O que é atributo de instância?
+• O que é atributo de classe?
+• Por que __str__ não imprime nada sozinho?
+```
+
+---
+
+ 🔵 Desafio 2 — Método estático
+
+Objetivo: Separar lógica de objeto vs lógica global
+
+> Crie um método estático que:
+
+* Receba um ano
+* Retorne todos os livros:
+
+  * disponíveis
+  * publicados naquele ano
+
+Pergunta-chave:
+
+> “Isso depende de UM livro específico?”
+> Se não → método estático.
+
+---
+
+ 3️⃣ Evolução de nível — pensamento profissional
+
+Agora vamos subir o nível, sem complicar desnecessariamente.
+
+---
+
+ 🟣 1. ENUM — estados claros e seguros
+
+Problema atual:
+
+```text
+_disponivel = True / False
+```
+
+Isso funciona, mas é frágil.
+
+Solução profissional:
+Criar um `Enum` para estados do livro:
+
+* DISPONIVEL
+* EMPRESTADO
+* RESERVADO
+
+Benefícios:
+
+* Código mais legível
+* Evita valores inválidos
+* Facilita manutenção futura
+
+---
+
+🟣 2. Validações (regra de negócio)
+
+Adicione validações como:
+
+* Ano não pode ser no futuro
+* Título e autor não podem ser vazios
+* Nota (se existir) deve estar entre 0 e 10
+
+Conceito importante:
+
+> Validação pertence ao MODELO, não ao `main`.
+
+---
+
+ 🟣 3. Herança (nível intermediário)
+
+Crie subclasses:
+
+* `LivroFisico`
+* `LivroDigital`
+
+Exemplos de diferença:
+
+* Livro físico → quantidade de páginas
+* Livro digital → tamanho do arquivo
+
+Objetivo conceitual:
+
+> Especializar comportamento sem duplicar código.
+
+---
+
+ 🧠 Regra de ouro para estudar
+
+Sempre se pergunte:
+
+```text
+• Isso é comportamento do objeto?
+• Isso é regra do sistema?
+• Isso é apenas execução?
+```
+
+E separe em arquivos diferentes.
+
+---
+
