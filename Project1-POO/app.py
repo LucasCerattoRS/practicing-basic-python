@@ -8,7 +8,7 @@ restaurante_praca.receber_avaliacao('Gui', 10)
 restaurante_praca.receber_avaliacao('Lais', 8)
 restaurante_praca.receber_avaliacao('Emy', 5)
 
-restaurante_mexicano = Restaurante('exican Food', 'Mexicana')
+restaurante_mexicano = Restaurante('Mexican Food', 'Mexicana')
 restaurante_japones = Restaurante('Japa', 'Japonesa')
 
 restaurante_mexicano.alernar_estados()
