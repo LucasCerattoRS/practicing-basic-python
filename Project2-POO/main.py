@@ -37,7 +37,7 @@
 # Modelo → Serviço → Aplicação
 
 
-from exerc.livro import Livro
+from sub.livro import Livro
 
 """
 Arquivo principal da aplicação.

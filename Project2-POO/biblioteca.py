@@ -32,7 +32,7 @@
 # Isso facilita manutenção e testes.
 
 
-from exerc.livro import Livro
+from sub.livro import Livro
 
 """
 Arquivo responsável por simular operações da biblioteca:
