@@ -87,8 +87,8 @@ while True:
         print("- Letra minúscula")
         print("- Número")
         print("- Caractere especial")
-    
-    print("Cadastro realizado com sucesso!")
+
+print("Cadastro realizado com sucesso!")
 
 # Usuário erra → recebe feedback → tenta de novo
 
