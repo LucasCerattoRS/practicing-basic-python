@@ -1,6 +1,6 @@
 def nome_valido(nome):
     # Verifica se o nome não está vazio
-    if nome == "":
+    if nome.strip() == "":
         return False
 
     # Verifica se todos os caracteres são letras ou espaços

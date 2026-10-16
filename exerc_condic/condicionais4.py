@@ -1,6 +1,10 @@
 peso = float(input("Informe seu peso (kg): "))
 altura = float(input("Informe sua altura (m): "))
 
+while altura <= 0:
+    print("Digite uma altura válida (maior que zero).\n")
+    altura = float(input("Informe sua altura (m): "))
+
 # o float permite numeros com virgula #
 
 imc = peso / (altura ** 2)

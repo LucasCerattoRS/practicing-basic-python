@@ -5,8 +5,12 @@ nomes = ['Ana', 'Bruno', 'Carlos', 'Diana', 'Eduardo']
 anos = [1990, 1985, 2000, 1995, 1980]
 
 
+def limpar_tela():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
 def exibir_main(texto):
-    os.system('cls')
+    limpar_tela()
     print(texto)
     print()
 
@@ -67,5 +71,5 @@ def main():
 
 
 if __name__ == '__main__':
-    os.system('cls')
+    limpar_tela()
     main()
