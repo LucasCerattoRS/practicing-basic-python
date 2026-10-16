@@ -1,5 +1,5 @@
 def nome_valido(nome):
-    if not nome or not all(c.isalpha() or c.isspace() for c in nome):
+    if not nome.strip() or not all(c.isalpha() or c.isspace() for c in nome):
         return False
     return True
 

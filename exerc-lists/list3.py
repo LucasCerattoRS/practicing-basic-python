@@ -7,9 +7,13 @@ numeros = [10, 20, 30, 40, 50]  # Lista de números
 nomes = ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve']  # Lista de nomes
 anos = [1995, 2000, 2005, 2010, 2015]  # Lista de anos
 
+# Limpa o terminal: 'cls' no Windows, 'clear' em Linux/Mac
+def limpar_tela():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 # Função para limpar a tela e exibir o texto de título
 def exibir_main(texto): 
-    os.system('cls')  # Limpa a tela (no Windows. Para Linux/Mac, seria 'clear')
+    limpar_tela()  # Limpa a tela
     print(texto)  # Exibe o texto recebido como argumento
     print()  # Adiciona uma linha em branco para espaçamento
 
@@ -73,5 +77,5 @@ def main():
 
 # Verifica se o script está sendo executado diretamente (não importado)
 if __name__ == '__main__':
-    os.system('cls')  # Limpa a tela antes de iniciar
+    limpar_tela()  # Limpa a tela antes de iniciar
     main()  # Chama a função principal para rodar o programa

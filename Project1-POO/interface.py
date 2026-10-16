@@ -36,9 +36,13 @@ def opcao_invalida():
     print('Opção inválida!\n')
     voltar_ao_menu_principal()
 
+def limpar_tela():
+    ''' Limpa o terminal: 'cls' no Windows, 'clear' em Linux/Mac '''
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 def exibir_subtitulo(texto):
     ''' Exibe um subtítulo estilizado na tela'''
-    os.system('cls')
+    limpar_tela()
     # Essa linha cria uma string com asteriscos (*) repetidos: # 
     linha = '*' * (len(texto))
     print(linha)
@@ -105,7 +109,7 @@ def escolher_opcao():
 
 def main():
     ''' Função principal que inicia o programa '''
-    os.system('cls')
+    limpar_tela()
     exibir_nome_do_programa()
     exibir_opcoes()
     escolher_opcao()
