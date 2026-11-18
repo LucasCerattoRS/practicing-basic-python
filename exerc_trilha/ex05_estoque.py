@@ -6,7 +6,8 @@ Crie a classe `Estoque` para controlar a quantidade de itens de uma loja.
     adicionar(item, quantidade)   soma ao item; quantidade deve ser > 0,
                                   senão levanta ValueError
     remover(item, quantidade)     subtrai; quantidade deve ser > 0 (ValueError);
-                                  se não houver o suficiente, levanta ValueError
+                                  se não houver o suficiente, levanta ValueError;
+                                  item que chega a 0 sai da listagem
     quantidade(item)              devolve a quantidade (0 se o item não existe)
     __str__                       uma linha por item, em ordem alfabética: "item: qtd"
 

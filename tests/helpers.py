@@ -28,7 +28,14 @@ def importar_por_caminho(caminho, nome, pasta_no_path=None):
     try:
         spec = importlib.util.spec_from_file_location(nome, arquivo)
         modulo = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(modulo)
+        # Registrar antes de executar, como no import normal: @dataclass e afins
+        # procuram o módulo em sys.modules.
+        sys.modules[nome] = modulo
+        try:
+            spec.loader.exec_module(modulo)
+        except BaseException:
+            del sys.modules[nome]
+            raise
     finally:
         if pasta_no_path:
             sys.path.remove(str(RAIZ / pasta_no_path))
