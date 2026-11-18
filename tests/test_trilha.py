@@ -1,12 +1,34 @@
-"""Testes dos gabaritos da trilha e verificação de que os enunciados continuam sem solução."""
+"""Testes da trilha.
+
+Por padrão testam os gabaritos. Para conferir a SUA solução (os arquivos de
+enunciado em exerc_trilha/), rode com a variável TRILHA=enunciado:
+
+    TRILHA=enunciado python -m pytest tests/test_trilha.py
+"""
+import os
+
 import pytest
 
-from ex01_temperatura_gabarito import celsius_para_fahrenheit
-from ex02_triangulo_gabarito import classificar_triangulo
-from ex03_fizzbuzz_gabarito import fizzbuzz
-from ex04_contar_palavras_gabarito import contar_palavras
-from ex05_estoque_gabarito import Estoque
-from helpers import RAIZ
+from helpers import RAIZ, importar_por_caminho
+
+ALVO = os.environ.get("TRILHA", "gabarito")
+if ALVO not in ("gabarito", "enunciado"):
+    raise ValueError(f"TRILHA deve ser 'gabarito' ou 'enunciado', não {ALVO!r}")
+
+
+def _carregar(nome):
+    if ALVO == "enunciado":
+        caminho = f"exerc_trilha/{nome}.py"
+    else:
+        caminho = f"exerc_trilha/gabaritos/{nome}_gabarito.py"
+    return importar_por_caminho(caminho, f"trilha_{ALVO}_{nome}")
+
+
+celsius_para_fahrenheit = _carregar("ex01_temperatura").celsius_para_fahrenheit
+classificar_triangulo = _carregar("ex02_triangulo").classificar_triangulo
+fizzbuzz = _carregar("ex03_fizzbuzz").fizzbuzz
+contar_palavras = _carregar("ex04_contar_palavras").contar_palavras
+Estoque = _carregar("ex05_estoque").Estoque
 
 
 @pytest.mark.parametrize("c, f", [(0, 32), (100, 212), (-40, -40), (37, 98.6)])
@@ -60,6 +82,15 @@ def test_estoque_quantidade_invalida(operacao, qtd):
         getattr(Estoque(), operacao)("x", qtd)
 
 
+def test_estoque_item_zerado_sai_da_listagem():
+    e = Estoque()
+    e.adicionar("caneta", 2)
+    e.adicionar("borracha", 1)
+    e.remover("caneta", 2)
+    assert e.quantidade("caneta") == 0
+    assert str(e) == "borracha: 1"
+
+
 def test_estoque_insuficiente():
     e = Estoque()
     e.adicionar("x", 1)
@@ -68,6 +99,7 @@ def test_estoque_insuficiente():
     assert e.quantidade("x") == 1
 
 
+@pytest.mark.skipif(ALVO == "enunciado", reason="checagem do repositório, não da solução")
 @pytest.mark.parametrize(
     "arquivo",
     [

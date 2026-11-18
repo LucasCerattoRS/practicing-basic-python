@@ -16,6 +16,8 @@ class Estoque:
         if self.quantidade(item) < quantidade:
             raise ValueError("Estoque insuficiente")
         self._itens[item] -= quantidade
+        if self._itens[item] == 0:
+            del self._itens[item]  # item zerado sai da listagem
 
     def quantidade(self, item):
         return self._itens.get(item, 0)

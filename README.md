@@ -75,10 +75,16 @@ separado, para você tentar antes de olhar.
 | 4 | `ex04_contar_palavras.py` | strings, listas e dicionários | `gabaritos/ex04_contar_palavras_gabarito.py` |
 | 5 | `ex05_estoque.py` | classe, validação e exceções | `gabaritos/ex05_estoque_gabarito.py` |
 
-Os testes cobrem **apenas os gabaritos**, então os enunciados incompletos não
-quebram o CI. Para conferir a sua solução, aponte os testes de
-`tests/test_trilha.py` para o seu arquivo (troque os imports) ou rode o enunciado
-com seus próprios exemplos.
+Por padrão os testes cobrem **apenas os gabaritos**, então os enunciados incompletos
+não quebram o CI. Para conferir a **sua** solução (os arquivos de enunciado), rode os
+mesmos testes apontando para eles:
+
+```bash
+TRILHA=enunciado python -m pytest tests/test_trilha.py      # Linux/macOS
+$env:TRILHA="enunciado"; python -m pytest tests/test_trilha.py   # PowerShell
+```
+
+Exercício ainda não feito aparece como falha (`NotImplementedError`/`AttributeError`).
 
 ## Testes e CI
 
@@ -89,7 +95,8 @@ python -m pytest
 
 - `tests/test_execucao.py`: roda todo script sem `input()` e exige sair com código 0.
 - `tests/test_correcoes.py`: um teste para cada bug corrigido (falhavam antes da correção).
-- `tests/test_trilha.py`: testa os 5 gabaritos.
+- `tests/test_trilha.py`: testa os 5 gabaritos (ou os enunciados, com `TRILHA=enunciado`).
+- `tests/test_helpers.py`: o importador por caminho aceita solução com `@dataclass` (Python 3.12).
 - CI: `.github/workflows/testes.yml` roda `pytest` em Python 3.12 e 3.13 a cada
   PR e a cada push na `main`. Só testa; não publica nem faz deploy.
 
